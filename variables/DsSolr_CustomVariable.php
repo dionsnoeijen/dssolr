@@ -18,6 +18,8 @@ class DsSolr_CustomVariable
 
 	public function example()
 	{
-		return 'datacheck';
+		$query = $this->solrClient->createQuery(constant("Solarium\Core\Client\Client::QUERY_SELECT"));
+
+		return $this->solrClient->execute($query);
 	}
 }

@@ -40,4 +40,9 @@ With the default SOLR setup this is '/solr/collection1/', this is a **required**
 
 ## Documentation
 
-Visit [the wiki](https://github.com/Sanity11/dssolr/wiki)
+Visit [the wiki](https://github.com/Sanity11/dssolr/wiki/)
+
+## Special thanks to
+[Lucene](http://lucene.apache.org/)
+[Solr](http://lucene.apache.org/solr/)
+[Solarium](http://www.solarium-project.org/)
