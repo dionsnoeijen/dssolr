@@ -1,0 +1,72 @@
+{% extends "dssolr/cp/_master" %}
+
+{% set selectedTab = 'indexing' %}
+{% set title = "DS Solr: Index"|t %}
+
+{% includeJsResource "dssolr/js/class.indexMapping.js" %}
+{% includeCssResource "dssolr/css/dssolr.css" %}
+
+{% set content %}
+	
+	{% if mappingSettings|length > 0 %}
+	<form id="index-form" method="post" class="centered" accept-charset="UTF-8">
+
+		<input type="hidden" name="action" value="dsSolr/cp/runIndex">
+		<input type="hidden" name="redirect" value="dssolr/cp/indexMapping">
+
+		<table id="indexing" class="data fullwidth collapsible">
+			<thead>
+				<tr>
+					<th scope="col">{{ "Section"|t }}</th>
+					<th scope="col">{{ "Locale"|t }}</th>
+					<th scope="col">{{ "Index path"|t }}</th>
+					<td class="thin"><a href="#">All</a></td>
+				</tr>
+			</thead>
+			<tbody>
+			{% for setting in mappingSettings %}
+				<tr id="mapping-section-{{ setting.sectionId }}-{{ setting.sectionLocale }}">
+					<th scope="row" data-title="{{ 'Name'|t }}">{{ setting.sectionName }}</th>
+					<th scope="row" data-title="{{ 'Locale'|t }}">{{ setting.sectionLocale }}</th>
+					<td data-title="Handle"><code>{{ setting.mappingPath }}</code></td>
+					<td class="thin">
+						<input type="checkbox" name="section[{{ setting.sectionId }}][{{ setting.sectionLocale }}]" value="{{ setting.mappingPath }}">
+					</td>
+				</tr>
+				<tr class="progress">
+					<td colspan="4">
+						<div></div>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<hr>
+
+		<p>{{ "Use full index to delete the section data first (just for the checked sections)"|t }}</p>
+		<span><strong>{{ "Full update"|t }}</strong>
+			<input type="checkbox" name="fullUpdate" checked />
+		</span>
+
+		<hr>
+
+		<div class="buttons">
+			<input class="btn submit" type="submit" value="{{ 'Run index'|t }}">
+		</div>
+
+	</form>
+	{% else %}
+	<p>{{ "Geen mappings ingesteld. Ga naar instellingen om mappings toe te kennen aan de secties. "|t }}</p>
+	{% endif %}
+
+{% endset %}
+
+{% block foot %}
+{{ parent() }}
+<script type="text/javascript">
+	window.onload = function() {
+		var im = new IndexMapping().init({{ stepSize }});
+	};
+</script>
+{% endblock %}

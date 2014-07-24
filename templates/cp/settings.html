@@ -1,0 +1,51 @@
+{% extends "dssolr/cp/_master" %}
+
+{% set selectedTab = 'settings' %}
+{% set title = "DS Solr: Settings"|t %}
+
+{% set content %}
+
+	<form id="settings-form" method="post" class="centered" accept-charset="UTF-8">
+		
+		<input type="hidden" name="action" value="dsSolr/cp/saveMappings">
+		<input type="hidden" name="redirect" value="dsSolr/cp/settings">
+		
+		<table id="taggroups" class="data fullwidth collapsible">
+			<thead>
+				<tr>
+					<th scope="col">{{ "Section"|t }}</th>
+					<th scope="col">{{ "Locale"|t }}</th>
+					<th scope="col">{{ "Index path"|t }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for setting in mappingSettings %}
+				<tr>
+					<th>{{ setting.sectionName }}</th>
+					<th>{{ setting.sectionLocale }}</th>
+					<td>
+						<div class="input">
+							<input type="hidden" name="mappingPaths[{{ setting.sectionId }}-{{ setting.sectionLocale }}][locale]" value="{{ setting.sectionLocale }}">
+							<input type="hidden" name="mappingPaths[{{ setting.sectionId }}-{{ setting.sectionLocale }}][sectionId]" value="{{ setting.sectionId }}">
+							<select name="mappingPaths[{{ setting.sectionId }}-{{ setting.sectionLocale }}][mapping]">
+								<option value="">{{ "Select mapping"|t }}</option>
+								{% for mapping in mappings %}
+								<option value="{{ mapping }}"{% if setting.mappingPath == mapping %} selected{% endif %}>{{ mapping }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<hr>
+
+		<div class="buttons">
+			<input class="btn submit" type="submit" value="{{ 'Save'|t }}">
+		</div>
+
+	</form>
+
+{% endset %}

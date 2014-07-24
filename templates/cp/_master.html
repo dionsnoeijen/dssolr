@@ -1,0 +1,7 @@
+{% extends "_layouts/cp" %}
+
+{% set tabs = {
+	indexing: { label: "Index"|t, url: url('dssolr')},
+	settings: { label: "Settings"|t, url: url('dssolr/settings') },
+    status: { label: "Status"|t, url: url('dssolr/status') }
+} %}

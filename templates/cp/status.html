@@ -1,0 +1,60 @@
+{% extends "dssolr/cp/_master" %}
+
+{% set selectedTab = 'status' %}
+{% set title = "DS Solr: Status"|t %}
+
+{% includeJsResource "dssolr/js/class.previewMapping.js" %}
+{% includeCssResource "dssolr/css/dssolr.css" %}
+
+{% set content %}
+	<h2>{{ "SOLR Server Connection"|t }}</h2>
+    <p>{{ "Ping"|t }}: {{ ping.status }}</p>
+
+    <hr />
+
+    <h2>{{ "Indexing step size"|t }}</h2>
+    <p>Entries indexed per step: {{ stepSize }}</p>
+
+    <hr />
+
+    <h2>{{ "Mappings"|t }}</h2>
+	<table id="mapping-paths" class="data fullwidth collapsible">
+		<thead>
+			<tr>
+				<th scope="col">{{ "Mapping"|t }}</th>
+				<th scope="col">{{ "Limit"|t }}</th>
+				<th scope="col">{{ "Offset"|t }}</th>
+				<th scope="col">{{ "Locale"|t }}</th>
+				<th scope="col">{{ "Id"|t }}</th>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for mapping in mappings %}
+			<tr>
+				<form method="post" class="centered" accept-charset="UTF-8">
+					<input type="hidden" name="action" value="dsSolr/cp/renderMappingPreview">
+					<input type="hidden" name="mapping" value="{{ mapping }}">
+					<th>{{ mapping }}</th>
+					<td><input type="text" class="text fullwidth" name="limit" value="10"></td>
+					<td><input type="text" class="text fullwidth" name="offset" value="0"></td>
+					<td>
+						{#<input type="text" class="text fullwidth" name="locale" value="nl">#}
+						<select name="locale">
+							{% for locale in locales %}
+							<option value="{{ locale.id }}">{{ locale.id }}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td><input type="text" class="text fullwidth" name="id" value=""></td>
+					<td width="260">
+						<input class="btn submit" name="rendered_preview" type="submit" value="{{ 'Render neat json'|t }}">
+						<input class="btn submit" name="real_preview" type="submit" value="{{ 'Render raw json'|t }}">
+					</td>
+				</form>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endset %}

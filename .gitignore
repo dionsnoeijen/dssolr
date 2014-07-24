@@ -1,0 +1,8 @@
+# Composer
+composer.lock
+
+# OSX
+.DS_Store
+
+# Test mappings
+templates/mappings/*.json

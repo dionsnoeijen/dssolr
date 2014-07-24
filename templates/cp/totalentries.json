@@ -1,0 +1,6 @@
+{
+	"total":"{{ total }}",
+	"sectionId":"{{ sectionId }}",
+	"mappingPath":"{{ mappingPath }}",
+	"locale":"{{ locale }}"
+}

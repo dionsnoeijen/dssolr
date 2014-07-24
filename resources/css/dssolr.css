@@ -1,0 +1,38 @@
+#preview {
+	background: #272822;
+	margin-top: 20px;
+	max-height: 1000px;
+	padding: 20px;
+	color: #ffffff;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#preview span.key {
+	color: #a5e000;
+}
+
+#preview span.string {
+	color: #f8f8f2;
+}
+
+#preview span.number {
+	color: #9d61f9;
+}
+
+tr.progress > td > div {
+	height: 3px;
+	width: 0%;
+	background: rgba(115, 127, 140, 0.15);
+	position: absolute;
+	bottom: 1px;
+}
+
+tr.progress > td {
+	padding: 0 !important;
+	position: relative;
+	border: none !important;
+}
