@@ -8,7 +8,7 @@ This plugin provides a flexible and powerful manner to integrate SOLR with your 
 
 ## Prerequisites
 
-You need SOLR to be installed on your server. This plugin aims to be as flexible as possible, sacrificing oversimplification of certain features. To get most out of this plugin it would be helpful if you have at least basic knowledge about Php, Json and of course SOLR. The web is full of information about these topics, therefore it's outside the scope of this readme.
+You need SOLR to be installed on your server. This plugin sacrifices some simplicity in order to be as flexible as possible. To get most out of this plugin it would be helpful if you have at least basic knowledge about Php, Json and of course SOLR. The web is full of information about these topics, therefore it's outside the scope of this readme.
 
 ## Installation
 
